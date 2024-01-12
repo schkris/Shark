@@ -1,6 +1,7 @@
 #include "Encoder.h"
 #include "Display.h"
 #include "Menu.h"
+#include "Status.h"
 #include "Game.h"
 #include <Arduino.h>
 
@@ -36,6 +37,10 @@ void encoderInterrupt()
             {
                 currentSelection--;
             }
+            else if(currentScreen == 1 && stepperSpeed > -255)
+            {
+                stepperSpeed = stepperSpeed - 5;
+            }
             else if(gameSelection > 0 && currentScreen == 2)
             {
                 gameSelection --;
@@ -46,6 +51,10 @@ void encoderInterrupt()
             if(currentSelection < menuSize - 1 && currentScreen == 0)
             {
                 currentSelection++;
+            }
+            else if(currentScreen == 1 && stepperSpeed < 255)
+            {
+                stepperSpeed = stepperSpeed + 5;
             }
             else if(gameSelection < gameMenuSize - 1 && currentScreen == 2)
             {

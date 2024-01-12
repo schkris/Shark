@@ -6,6 +6,7 @@
 #include "Game.h"
 
 int currentScreen = 0;
+int stepperSpeed = 0;
 
 void setup() 
 {
@@ -14,6 +15,7 @@ void setup()
   initializeDisplay();
   initializeEncoder();
   initializeDHTSensor();
+  initializeStepper();
 }
 
 void loop() 
@@ -30,6 +32,7 @@ void loop()
         handleMenuSelection();
       break;
       case 1:
+        stepperSpeed = 0;
         currentScreen = 0;
       break;
       case 2:
@@ -51,6 +54,7 @@ void loop()
     break;
     case 1:
       readDHTSensor();
+      controlStepperMotor(stepperSpeed);
       renderStatusScreen();
     break;
     case 2:

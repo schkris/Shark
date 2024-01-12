@@ -64,9 +64,12 @@ void renderMenu()
 
 void renderStatusScreen() {
     char tempHumidBuffer[50];  // Buffer to hold the temperature and humidity string
+    char stepSpeedBuffer[50];
 
     // Format the temperature and humidity readings into a string
     snprintf(tempHumidBuffer, sizeof(tempHumidBuffer), "Temp: %.1fC, Hum: %.1f%%", temperature, humidity);
+
+    snprintf(stepSpeedBuffer, sizeof(stepSpeedBuffer), "Speed: %d", stepperSpeed);
 
     u8g2.firstPage();
     do {
@@ -74,12 +77,13 @@ void renderStatusScreen() {
         u8g2.setFont(u8g2_font_ncenB08_tr); // Set font
 
         // Draw the status title
-        u8g2.drawStr(0, 24, "Status");
+        u8g2.drawStr(0, 12, "Status");
 
         // Draw the temperature and humidity data
-        u8g2.drawStr(0, 40, tempHumidBuffer);  // Position the text below the title
+        u8g2.drawStr(0, 24, tempHumidBuffer);  // Position the text below the title
 
         // You can add more status information here as needed
+        u8g2.drawStr(0, 36, stepSpeedBuffer);
 
     } while (u8g2.nextPage());
 }

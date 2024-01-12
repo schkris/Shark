@@ -10,7 +10,7 @@ void handleGameSelection()
   if (gameSelection == 0) 
   {
     // Start the game
-  } 
+  }
   else if (gameSelection == 1) 
   {
     // Exit to main menu
